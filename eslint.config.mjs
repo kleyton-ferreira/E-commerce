@@ -9,7 +9,7 @@ export default defineConfig([
   {
     files: ['**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
     plugins: { js },
-    rules: { 'react-in-jsx-scope': 'off' },
+    rules: ['react/react-in-jsx-scope'],
     extends: ['js/recommended']
   },
   {
