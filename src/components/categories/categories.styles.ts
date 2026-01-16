@@ -18,22 +18,22 @@ export const CategoriesContent = styled.div`
   grid-gap: 15px;
   padding: 30px;
 
-  &:nth-child(1) {
+  & div:nth-child(1) {
     grid-area: a;
   }
 
-  &:nth-child(2) {
+  & div:nth-child(2) {
     grid-area: b;
   }
 
-  &:nth-child(3) {
+  & div:nth-child(3) {
     grid-area: c;
   }
 
-  &:nth-child(4) {
+  & div:nth-child(4) {
     grid-area: d;
   }
-  &:nth-child(5) {
+  & div:nth-child(5) {
     grid-area: e;
   }
 `
