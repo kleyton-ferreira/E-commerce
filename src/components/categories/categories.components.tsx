@@ -29,7 +29,9 @@ const Categories = () => {
 
   return (
     <div className='categories-container'>
-      <div className='categories-content'>Categories</div>
+      <div className='categories-content'>
+        {/* {categories.map(category => <CategoryItem />)} */}
+      </div>
     </div>
   )
 }
