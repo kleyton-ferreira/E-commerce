@@ -1,4 +1,6 @@
 import { BsCart3 } from 'react-icons/bs'
+
+// STYLED COMPONENTS
 import {
   HeaderContainer,
   HeaderItem,
