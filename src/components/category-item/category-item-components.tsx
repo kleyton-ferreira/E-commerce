@@ -3,8 +3,8 @@ import { FunctionComponent } from 'react'
 // UTILITIES
 import Category from '../../types/categories.types'
 
-// STYLES
-import './category-item-style.css'
+// STYLED COMPONENTS
+import { CategoryitemContainer, CategoryName } from './category-item.style'
 
 interface CategoryItemProps {
   category: Category
@@ -14,15 +14,12 @@ const CategoriesItems: FunctionComponent<CategoryItemProps> = ({
   category
 }) => {
   return (
-    <div
-      className='category-item-container'
-      style={{ backgroundImage: category.imageUrl }}
-    >
-      <div className='category-name'>
+    <CategoryitemContainer style={{ backgroundImage: category.imageUrl }}>
+      <CategoryName>
         <p>{category.displaName}</p>
         <p>Explorar</p>
-      </div>
-    </div>
+      </CategoryName>
+    </CategoryitemContainer>
   )
 }
 
