@@ -4,7 +4,7 @@ import { FunctionComponent } from 'react'
 import Category from '../../types/categories.types'
 
 // STYLES
-import './category-item-styles.css'
+import './category-item-style.css'
 
 interface CategoryItemProps {
   category: Category
