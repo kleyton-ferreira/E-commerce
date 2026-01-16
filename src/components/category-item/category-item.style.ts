@@ -7,7 +7,6 @@ export const CategoryitemContainer = styled.div`
   justify-content: center;
   width: 100%;
   height: 100%;
-  background-color: ${Colors.backgound.red};
   grid-gap: 15px;
   background-size: cover;
   background-repeat: no-repeat;
@@ -37,7 +36,7 @@ export const CategoryName = styled.div`
     background: rgba(233, 236, 239, 0.55);
   }
 
-  &:nth-child(1) {
+  & p:nth-child(1) {
     font-weight: 600;
   }
 `
