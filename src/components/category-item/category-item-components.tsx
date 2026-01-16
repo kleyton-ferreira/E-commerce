@@ -14,7 +14,7 @@ const CategoriesItems: FunctionComponent<CategoryItemProps> = ({
   category
 }) => {
   return (
-    <CategoryitemContainer style={{ backgroundImage: category.imageUrl }}>
+    <CategoryitemContainer backgroundImage={category.imageUrl}>
       <CategoryName>
         <p>{category.displaName}</p>
         <p>Explorar</p>
