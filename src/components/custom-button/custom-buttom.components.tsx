@@ -1,5 +1,6 @@
 import React, { FunctionComponent, ButtonHTMLAttributes } from 'react'
 
+// STYLE
 import { CustomButtonContainer, IconContainer } from './custom-button.style'
 
 interface CustomButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {

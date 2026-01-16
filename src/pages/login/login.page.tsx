@@ -1,8 +1,11 @@
 import { BsGoogle } from 'react-icons/bs'
+import { FiLogIn } from 'react-icons/fi'
 
+// COMPONENTS
 import Header from '../../components/header/header.components'
 import CustomButton from '../../components/custom-button/custom-buttom.components'
 
+// STYLE
 import {
   LoginContainer,
   LoginContent,
@@ -24,6 +27,8 @@ const LoginPage = () => {
           <LoginSubtitle>ou entre com seu e-mail </LoginSubtitle>
           <LoginInputContainer></LoginInputContainer>
           <LoginInputContainer></LoginInputContainer>
+
+          <CustomButton startIcon={<FiLogIn size={18} />}>Entar</CustomButton>
         </LoginContent>
       </LoginContainer>
     </>
