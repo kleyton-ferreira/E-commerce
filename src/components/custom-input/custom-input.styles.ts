@@ -6,7 +6,7 @@ type CustomIputContainerProps = {
 }
 
 export const CustomInputContainer = styled.input<CustomIputContainerProps>`
-  /* border: none; */
+  border: none;
   width: 100%;
   background-color: ${Colors.input.background};
   padding-right: 20px;
@@ -24,7 +24,7 @@ export const CustomInputContainer = styled.input<CustomIputContainerProps>`
   }
 
   &:focus {
-    color: ${(props) =>
+    outline: ${(props) =>
       props.hasError ? 'none' : `2px solid ${Colors.input.placeholder}`};
   }
 `
