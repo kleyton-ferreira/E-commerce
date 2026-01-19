@@ -16,13 +16,17 @@ const Header = () => {
     navigate('/login')
   }
 
+  const handleSigUpClick = () => {
+    navigate('/signup')
+  }
+
   return (
     <HeaderContainer>
       <HeaderTitle>CLUB CLOTHING</HeaderTitle>
       <HeaderItems>
         <HeaderItem>Explorar</HeaderItem>
         <HeaderItem onClick={handleLoginClick}>Login</HeaderItem>
-        <HeaderItem>Criar Conta</HeaderItem>
+        <HeaderItem onClick={handleSigUpClick}>Criar Conta</HeaderItem>
         <HeaderItem>
           <BsCart3 size={20} />
           <p style={{ marginLeft: 5 }}>5</p>

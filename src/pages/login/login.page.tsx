@@ -18,16 +18,23 @@ import {
   LoginSubtitle
 } from './login.styles'
 
+interface LoginPageForm {
+  password: string
+  email: string
+}
+
 const LoginPage = () => {
   const {
     register,
     handleSubmit,
     formState: { errors }
-  } = useForm()
+  } = useForm<LoginPageForm>()
 
   const handleSubmitPress = (data: any) => {
     console.log({ data })
   }
+
+  console.log({ errors })
 
   return (
     <>
@@ -39,6 +46,7 @@ const LoginPage = () => {
             Entrar com o google
           </CustomButton>
           <LoginSubtitle>ou entre com seu e-mail </LoginSubtitle>
+
           <LoginInputContainer>
             <p>E-mail</p>
             <CustomInput
@@ -67,6 +75,7 @@ const LoginPage = () => {
             <CustomInput
               hasError={!!errors.password}
               placeholder='Digite seu Senha'
+              type='password'
               {...register('password', { required: true })}
             />
 
@@ -75,12 +84,8 @@ const LoginPage = () => {
             )}
           </LoginInputContainer>
           <CustomButton
-            startIcon={
-              <FiLogIn
-                size={18}
-                onClick={() => handleSubmit(handleSubmitPress)()}
-              />
-            }
+            startIcon={<FiLogIn size={18} />}
+            onClick={() => handleSubmit(handleSubmitPress)()}
           >
             Entar
           </CustomButton>
