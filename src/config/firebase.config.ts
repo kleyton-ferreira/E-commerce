@@ -2,12 +2,12 @@ import { initializeApp } from 'firebase/app'
 import { getFirestore } from 'firebase/firestore'
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyAMz3n3Voqf3oD4r_V8pp6xNialUlFldi0',
-  authDomain: 'e-commerce-club.firebaseapp.com',
-  projectId: 'e-commerce-club',
-  storageBucket: 'e-commerce-club.firebasestorage.app',
-  messagingSenderId: '699694059082',
-  appId: '1:699694059082:web:1eb944e3afb97259fb20b3'
+  apiKey: 'AIzaSyBKeXyIth7K2pXjc5r7ZvQexwg8SHPwUDk',
+  authDomain: 'e-commerce-web-ec660.firebaseapp.com',
+  projectId: 'e-commerce-web-ec660',
+  storageBucket: 'e-commerce-web-ec660.firebasestorage.app',
+  messagingSenderId: '737507744582',
+  appId: '1:737507744582:web:480447fe81e31b9609e347'
 }
 
 export const app = initializeApp(firebaseConfig)
