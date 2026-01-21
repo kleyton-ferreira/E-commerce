@@ -7,7 +7,7 @@ export const HeaderContainer = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 20px;
-  color: ${Colors.backgound.whithe}; // USEI DESSA MANEIRA AQUI! ( theme )
+  color: ${Colors.text.whithe};
 `
 
 export const HeaderTitle = styled.h2`
@@ -26,11 +26,14 @@ export const HeaderItem = styled.div`
   font-size: 1rem;
   display: flex;
   align-items: center;
-  cursor: pointer;
 
   &:nth-child(1),
   &:nth-child(2),
   &:nth-child(3) {
     margin-right: 40px;
+  }
+
+  &:hover {
+    cursor: pointer;
   }
 `

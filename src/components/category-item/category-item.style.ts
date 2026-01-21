@@ -5,7 +5,7 @@ interface CategoryItemContainerProps {
   backgroundImage: string
 }
 
-export const CategoryitemContainer = styled.div<CategoryItemContainerProps>`
+export const CategoryItemContainer = styled.div<CategoryItemContainerProps>`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -16,11 +16,10 @@ export const CategoryitemContainer = styled.div<CategoryItemContainerProps>`
   background-repeat: no-repeat;
   background-position: center;
   border-radius: 10px;
-  /* DESSA FORMA AQUI A IMAGEM FICA UM POUCO ESCURA */
   box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25);
   background-color: rgba(0, 0, 0, 0.3);
   background-blend-mode: color;
-  background: ${(props) => `url("${props.backgroundImage}")`};
+  background-image: ${(props) => `url('${props.backgroundImage}')`};
 `
 
 export const CategoryName = styled.div`
