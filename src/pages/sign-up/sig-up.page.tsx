@@ -1,6 +1,12 @@
 import { FiLogIn } from 'react-icons/fi'
 import validator from 'validator'
 import { useForm } from 'react-hook-form'
+import {
+  AuthError,
+  createUserWithEmailAndPassword,
+  AuthErrorCodes
+} from 'firebase/auth'
+import { auth, db } from '../../config/firebase.config'
 
 // COMPONENTS
 import CustomButton from '../../components/custom-button/custom-buttom.components'
@@ -16,8 +22,11 @@ import {
   SignUpInputContainer
 } from './sign-up-style'
 
+// UTILITIES
+import { addDoc, collection } from 'firebase/firestore'
+
 interface SignUpForm {
-  name: string
+  firstName: string
   lastName: string
   email: string
   password: string
@@ -29,13 +38,34 @@ const SigUpPage = () => {
     register,
     handleSubmit,
     formState: { errors },
-    watch
+    watch,
+    setError
   } = useForm<SignUpForm>()
 
   const watchPassword = watch('password')
 
-  const handleSubmitSignUpPage = (data: SignUpForm) => {
-    console.log({ data })
+  const handleSubmitSignUpPage = async (data: SignUpForm) => {
+    try {
+      const userCredentials = await createUserWithEmailAndPassword(
+        auth,
+        data.email,
+        data.password
+      )
+
+      console.log({ userCredentials })
+
+      await addDoc(collection(db, 'users'), {
+        id: userCredentials.user.uid,
+        email: userCredentials.user.email,
+        firstName: data.firstName,
+        lastName: data.lastName
+      })
+    } catch (error) {
+      const _error = error as AuthError
+      if (_error.code === AuthErrorCodes.EMAIL_EXISTS) {
+        return setError('email', { type: 'alreadyInUse' })
+      }
+    }
   }
 
   console.log({ errors })
@@ -50,12 +80,12 @@ const SigUpPage = () => {
           <SignUpInputContainer>
             <p>Nome</p>
             <CustomInput
-              hasError={!!errors.name}
+              hasError={!!errors.firstName}
               placeholder='Digite seu nome'
-              {...register('name', { required: true })}
+              {...register('firstName', { required: true })}
             />
 
-            {errors?.name?.type === 'required' && (
+            {errors?.firstName?.type === 'required' && (
               <InputErrorMessage>O nome e obrigatório.</InputErrorMessage>
             )}
           </SignUpInputContainer>
@@ -89,6 +119,10 @@ const SigUpPage = () => {
               <InputErrorMessage>O email e obrigatória.</InputErrorMessage>
             )}
 
+            {errors?.email?.type === 'alreadyInUse' && (
+              <InputErrorMessage>Esse email ja existe</InputErrorMessage>
+            )}
+
             {errors?.email?.type === 'validate' && (
               <InputErrorMessage>
                 Por favor, insira um e-mail válido.
@@ -102,11 +136,17 @@ const SigUpPage = () => {
               hasError={!!errors.password}
               placeholder='Digite sua senha'
               type='password'
-              {...register('password', { required: true })}
+              {...register('password', { required: true, minLength: 6 })}
             />
 
             {errors?.password?.type === 'required' && (
               <InputErrorMessage>A senha é obrigatória.</InputErrorMessage>
+            )}
+
+            {errors?.password?.type === 'minLength' && (
+              <InputErrorMessage>
+                A senha deve conter 6 caracteres.
+              </InputErrorMessage>
             )}
           </SignUpInputContainer>
 
@@ -118,6 +158,7 @@ const SigUpPage = () => {
               type='password'
               {...register('passwordConfirmation', {
                 required: true,
+                minLength: 6,
                 validate: (value) => {
                   return value === watchPassword
                 }
@@ -127,6 +168,12 @@ const SigUpPage = () => {
             {errors?.passwordConfirmation?.type === 'required' && (
               <InputErrorMessage>
                 Confirmação de Senha é obrigatória.
+              </InputErrorMessage>
+            )}
+
+            {errors?.passwordConfirmation?.type === 'minLength' && (
+              <InputErrorMessage>
+                A confirmação de senha deve conter 6 caracteres.
               </InputErrorMessage>
             )}
 
