@@ -54,6 +54,7 @@ const SigUpPage = () => {
 
       console.log({ userCredentials })
 
+      // ESSE METODO AQUI ELE DEIXA SALVO OS DADOS DO USUARIO NO ( fIRESTORE Database )
       await addDoc(collection(db, 'users'), {
         id: userCredentials.user.uid,
         email: userCredentials.user.email,
