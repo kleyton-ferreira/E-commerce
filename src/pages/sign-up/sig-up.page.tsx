@@ -59,7 +59,8 @@ const SigUpPage = () => {
         id: userCredentials.user.uid,
         email: userCredentials.user.email,
         firstName: data.firstName,
-        lastName: data.lastName
+        lastName: data.lastName,
+        providers: 'firebase'
       })
     } catch (error) {
       const _error = error as AuthError
