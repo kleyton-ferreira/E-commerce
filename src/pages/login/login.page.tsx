@@ -10,6 +10,8 @@ import {
   signInWithPopup
 } from 'firebase/auth'
 
+import { useEffect, useContext } from 'react'
+
 // COMPONENTS
 import Header from '../../components/header/header.components'
 import CustomButton from '../../components/custom-button/custom-buttom.components'
@@ -27,6 +29,8 @@ import {
 
 // UTILITIES
 import { auth, db, provider } from '../../config/firebase.config'
+import { UserContext } from '../../context/user.context'
+import { useNavigate } from 'react-router-dom'
 
 interface LoginPageForm {
   password: string
@@ -40,6 +44,16 @@ const LoginPage = () => {
     setError,
     formState: { errors }
   } = useForm<LoginPageForm>()
+
+  const { isAuthenticated } = useContext(UserContext)
+
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate('/')
+    }
+  }, [isAuthenticated])
 
   const handleSubmitPress = async (data: LoginPageForm) => {
     try {
