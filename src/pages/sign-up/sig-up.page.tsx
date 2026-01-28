@@ -8,13 +8,14 @@ import {
 } from 'firebase/auth'
 import { auth, db } from '../../config/firebase.config'
 import { useNavigate } from 'react-router-dom'
-import { useEffect, useContext } from 'react'
+import { useEffect, useContext, useState } from 'react'
 
 // COMPONENTS
 import CustomButton from '../../components/custom-button/custom-buttom.components'
 import CustomInput from '../../components/custom-input/custom-input-components'
 import Header from '../../components/header/header.components'
 import InputErrorMessage from '../../components/input-error-message/input-error-message'
+import Loading from '../../components/loading/loading.components'
 
 // STYLES
 import {
@@ -45,10 +46,13 @@ const SigUpPage = () => {
     setError
   } = useForm<SignUpForm>()
 
+  const [isLoading, setIsLoading] = useState(false)
+
   const watchPassword = watch('password')
 
   const handleSubmitSignUpPage = async (data: SignUpForm) => {
     try {
+      setIsLoading(true)
       const userCredentials = await createUserWithEmailAndPassword(
         auth,
         data.email,
@@ -70,6 +74,8 @@ const SigUpPage = () => {
       if (_error.code === AuthErrorCodes.EMAIL_EXISTS) {
         return setError('email', { type: 'alreadyInUse' })
       }
+    } finally {
+      setIsLoading(false)
     }
   }
 
@@ -88,6 +94,9 @@ const SigUpPage = () => {
   return (
     <>
       <Header />
+
+      {isLoading && <Loading />}
+
       <SignUpContainer>
         <SignUpContent>
           <SignUpHeadline>Crie sua Conta</SignUpHeadline>
