@@ -10,13 +10,14 @@ import {
   signInWithPopup
 } from 'firebase/auth'
 
-import { useEffect, useContext } from 'react'
+import { useEffect, useContext, useState } from 'react'
 
 // COMPONENTS
 import Header from '../../components/header/header.components'
 import CustomButton from '../../components/custom-button/custom-buttom.components'
 import CustomInput from '../../components/custom-input/custom-input-components'
 import InputErrorMessage from '../../components/input-error-message/input-error-message'
+import Loading from '../../components/loading/loading.components'
 
 // STYLE
 import {
@@ -45,6 +46,8 @@ const LoginPage = () => {
     formState: { errors }
   } = useForm<LoginPageForm>()
 
+  const [isLoading, setIsLoaing] = useState(false)
+
   const { isAuthenticated } = useContext(UserContext)
 
   const navigate = useNavigate()
@@ -57,6 +60,7 @@ const LoginPage = () => {
 
   const handleSubmitPress = async (data: LoginPageForm) => {
     try {
+      setIsLoaing(true)
       const UserCredential = await signInWithEmailAndPassword(
         auth,
         data.email,
@@ -70,11 +74,14 @@ const LoginPage = () => {
       if (_error.code === AuthErrorCodes.INVALID_LOGIN_CREDENTIALS) {
         return setError('password', { type: 'mismatch' })
       }
+    } finally {
+      setIsLoaing(false)
     }
   }
 
   const handleSignInWithGooglePress = async () => {
     try {
+      setIsLoaing(true)
       const userCredentials = await signInWithPopup(auth, provider)
       console.log({ userCredentials })
 
@@ -100,12 +107,16 @@ const LoginPage = () => {
       }
     } catch (error) {
       console.log({ error })
+    } finally {
+      setIsLoaing(false)
     }
   }
 
   return (
     <>
       <Header />
+      {isLoading && <Loading />}
+
       <LoginContainer>
         <LoginContent>
           <LoginHeadLine>Entre com a sua conta</LoginHeadLine>
