@@ -3,7 +3,7 @@ import Product from './product.types'
 interface Category {
   id: string
   name: string
-  displaName: string
+  displayName: string
   imageUrl: string
   products: Product[]
 }
