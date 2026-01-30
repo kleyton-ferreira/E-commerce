@@ -6,6 +6,9 @@ import { Container } from './categories-overview.style'
 // UTILITIES
 import { CategoryContext } from '../../context/category.context'
 
+// COMPONENTS
+import CategoryOverview from '../category-overview/category-overview.componets'
+
 const CategoriesOverview: FunctionComponent = () => {
   const { categories, fetchCategories } = useContext(CategoryContext)
 
@@ -19,7 +22,7 @@ const CategoriesOverview: FunctionComponent = () => {
     <>
       <Container>
         {categories.map((category) => (
-          <p key={category.id}> {category.displayName} </p>
+          <CategoryOverview key={category.id} category={category} />
         ))}
       </Container>
     </>
