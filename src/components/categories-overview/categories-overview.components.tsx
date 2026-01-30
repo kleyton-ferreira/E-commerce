@@ -8,15 +8,18 @@ import { CategoryContext } from '../../context/category.context'
 
 // COMPONENTS
 import CategoryOverview from '../category-overview/category-overview.componets'
+import Loading from '../loading/loading.components'
 
 const CategoriesOverview: FunctionComponent = () => {
-  const { categories, fetchCategories } = useContext(CategoryContext)
+  const { categories, fetchCategories, isLoading } = useContext(CategoryContext)
 
   useEffect(() => {
     if (categories.length === 0) {
       fetchCategories()
     }
   }, [])
+
+  if (isLoading) return <Loading />
 
   return (
     <>
