@@ -38,3 +38,7 @@ export const IconContainer = styled.div`
     cursor: pointer;
   }
 `
+export const ContainerContent = styled.div`
+  width: 1440px;
+  margin: 0 auto;
+`

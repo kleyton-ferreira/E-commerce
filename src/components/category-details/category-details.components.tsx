@@ -17,7 +17,8 @@ import {
   Container,
   CategoryTitle,
   IconContainer,
-  ProductsContainer
+  ProductsContainer,
+  ContainerContent
 } from './category-details.styles'
 
 interface CategoryDetailsProps {
@@ -60,20 +61,22 @@ const CategoryDetails: FunctionComponent<CategoryDetailsProps> = ({
 
   return (
     <>
-      <Container>
-        <CategoryTitle onClick={handleBackClick}>
-          <IconContainer>
-            <BiChevronLeft size={36} />
-          </IconContainer>
-          <p> Explorar {category?.displayName} </p>
-        </CategoryTitle>
+      <ContainerContent>
+        <Container>
+          <CategoryTitle onClick={handleBackClick}>
+            <IconContainer>
+              <BiChevronLeft size={36} />
+            </IconContainer>
+            <p> Explorar {category?.displayName} </p>
+          </CategoryTitle>
 
-        <ProductsContainer>
-          {category?.products.map((products) => (
-            <ProductItem key={products.id} product={products} />
-          ))}
-        </ProductsContainer>
-      </Container>
+          <ProductsContainer>
+            {category?.products.map((products) => (
+              <ProductItem key={products.id} product={products} />
+            ))}
+          </ProductsContainer>
+        </Container>
+      </ContainerContent>
     </>
   )
 }
