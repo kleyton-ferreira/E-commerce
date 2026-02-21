@@ -19,6 +19,7 @@ import { userConverter } from './converters/firestore.converts'
 // COMPONENTS
 import Loading from './components/loading/loading.components'
 import Cart from './components/cart/cart.components'
+import AuthenticationGuard from './components/guards/authentication.guards'
 
 const App: FunctionComponent = () => {
   const [isInitialing, setIsInitialing] = useState(true)
@@ -56,7 +57,14 @@ const App: FunctionComponent = () => {
         <Route path='/login' element={<LoginPage />} />
         <Route path='/signup' element={<SigUpPage />} />
         <Route path='/explore' element={<ExplorePage />} />
-        <Route path='/checkout' element={<CheckoutPage />} />
+        <Route
+          path='/checkout'
+          element={
+            <AuthenticationGuard>
+              <CheckoutPage />
+            </AuthenticationGuard>
+          }
+        />
         <Route path='/category/:id' element={<CategoryDetailsPage />} />
       </Routes>
       <Cart />
